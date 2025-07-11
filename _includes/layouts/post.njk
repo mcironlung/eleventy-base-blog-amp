@@ -1,0 +1,42 @@
+---
+layout: layouts/base.njk
+---
+<article class="post">
+<div data-pagefind-body>
+  <h1>{{ title }}</h1>
+  {% if image %}
+  <img src="{{ image }}" alt="{{ title }}">
+  {% endif %}
+  <div class="content">
+    {{ content | safe }}
+  </div>
+</div>
+<!-- 
+  {% if tags %}
+  <ul class="tags">
+    {% for tag in tags %}
+    <li class="button"><a href="/tags/{{ tag | slugify }}/">{{ tag }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %} -->
+<!-- Recommended Posts Section START -->
+  {% set related = collections.posts | relatedPosts(tags, page.url, 4) %}
+  {% if related.length %}
+  <div class="spacer">
+    <h2>Related Posts</h2>
+    <div class="post-grid">
+      {% for post in related %}
+      <article class="post-card">
+        <a href="{{ post.url }}">
+          {% if post.data.image %}
+          <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
+          {% endif %}
+          <h3>{{ post.data.title }}</h3>
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  <!-- Recommended Posts Section END -->
+</article>

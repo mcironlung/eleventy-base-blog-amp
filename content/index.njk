@@ -1,0 +1,31 @@
+---
+layout: layouts/base.njk
+title: Index Title to display for SEO
+pagination:
+  data: collections.posts
+  size: 4
+  alias: posts
+  reverse: true
+---
+<p><strong>This is a featured text area that you can use to show a short messsage.  You can also wrap this in message-box class to give it a different look.</p>
+
+<link href="/_pagefind/pagefind-ui.css" rel="stylesheet">
+<div id="search" class="search"></div>
+<script src="/_pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', showImages: false });"></script>
+
+<section class="post-grid">
+  {% for post in posts %}
+    <article class="post-card">
+      <a href="{{ post.url }}">
+        {% if post.data.image %}
+        <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
+        {% endif %}
+        <h2>{{ post.data.title }}</h2>
+      </a>
+    </article>
+  {% endfor %}
+</section>
+
+<div class="button spacer">
+  <a href="/blog/">View All Posts</a>
+</div>

@@ -1,0 +1,34 @@
+---
+layout: layouts/base.njk
+title: Blog Archive
+pagination:
+  data: collections.posts
+  size: 10
+  alias: posts
+  reverse: true
+permalink: "/blog/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}"
+---
+<h1>All Posts</h1>
+
+<link href="/_pagefind/pagefind-ui.css" rel="stylesheet">
+<div id="search" class="search"></div>
+<script src="/_pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', showImages: false });"></script>
+
+<section class="post-grid">
+  {% for post in posts %}
+    <article class="post-card">
+      <a href="{{ post.url }}">
+        {% if post.data.image %}
+        <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
+        {% endif %}
+        <h2>{{ post.data.title }}</h2>
+      </a>
+    </article>
+  {% endfor %}
+</section>
+
+{% if pagination.href.next %}
+  <div class="button spacer">
+    <a href="{{ pagination.href.next }}" class="load-more-button">Load More Posts</a>
+  </div>
+{% endif %}
