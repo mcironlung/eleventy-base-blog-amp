@@ -87,10 +87,11 @@ This is loclated in the index.njk
 
 ## How to use redirects
 
-redirect_from: /oldurl.html
-redirect_from: [/old-url/page, /some-other-page]
+added this shortcode in eleventy.config.js already
+// This adds a redirects file.
+	eleventyConfig.addPassthroughCopy("_redirects");
 
-[Helpful Article](https://brianm.me/posts/eleventy-redirect-from/)
+In the _redirects file you can see how to setu redirects.
 
 ## How to use embed everything
 
